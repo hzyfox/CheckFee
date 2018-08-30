@@ -18,11 +18,11 @@ import javax.mail.internet.*;
 
 public class SendEmail {
     private static Logger log = LoggerFactory.getLogger(SendEmail.class);
-    private static final String authKey = "qasoqoqoyzdbbfgj";
-    private static final String USER = "cszhenyuhu@foxmail.com";
+    private static final String authKey = "hquaufqcypcbbjcf";
+    private static final String USER = "husterfox@qq.com";
 
     //参考链接https://blog.csdn.net/miaoch/article/details/53172743
-    public static void sendMessage(String toMail, String elecValue) throws MessagingException {
+    public static void sendMessage(String toMail, String elecValue) throws MessagingException, UnsupportedEncodingException {
         final Properties properties = new Properties();
         properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.setProperty("mail.smtp.socketFactory.port", "465");
@@ -50,10 +50,12 @@ public class SendEmail {
         message.setFrom(from);
         if (CmdLineArgsParser.ArgsList.toMailStr != null) {
             InternetAddress[] iaToList = InternetAddress.parse(CmdLineArgsParser.ArgsList.toMailStr);
-            message.setRecipients(RecipientType.TO, iaToList); // 收件人
+            // 收件人
+            message.setRecipients(RecipientType.TO, iaToList);
         }
         message.setSentDate(new Date());
-        message.setSubject("寝室电费不足提醒"); // 主题
+        //message.setSubject(new String("寝室电费不足提醒".getBytes("UTF-8"),"UTF-8")); // 主题
+        message.setSubject("寝室电费不足提醒");
         message.setText("您的寝室 " + CmdLineArgsParser.ArgsList.roomNumberValue + "电量只有 " + elecValue + "度啦，请您尽快充值");
         Transport.send(message);
     }

@@ -12,9 +12,9 @@ public class CmdLineArgsParser {
         building.setRequired(true);
         Option roomNumber = new Option("r", "room", true, "which room number you want to check eg. \"201\"");
         roomNumber.setRequired(true);
-        Option toMail = new Option("t", "to", true, "which email address you want to receive when elec fee is not enough eg. \"XXX@qq.com\"");
+        Option toMail = new Option("t", "to", true, "which email address you want to receive when elec fee is not enough eg. It can be a list, separated by comma eg. \"XXX@qq.com,XXXX@qq.com\"");
         toMail.setRequired(true);
-        Option warningElecValue = new Option("w", "warning", true, "the email will send to you when elec value is less than the waring value, default is 10.0 eg.\"10\"");
+        Option warningElecValue = new Option("w", "warning", true, "when elec value is less than the waring value, we will send message to tou. default is 10.0 eg.\"10\"");
         warningElecValue.setRequired(false);
         warningElecValue.setType(Float.class);
         Option help = new Option("h","help",false,"print help message");
